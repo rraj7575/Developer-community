@@ -5,3 +5,8 @@
 /client/node_modules
 
 .idea/
+
+
+.DS_Store
+src/static/.DS_Store
+src/.DS_Store

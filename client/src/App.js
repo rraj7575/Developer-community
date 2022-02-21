@@ -69,7 +69,7 @@ class App extends Component {
                 <PrivateRoute path='/edit-profile' component={AsyncEditProfile} />
                 <PrivateRoute path='/add-experience' component={AsyncAddExperience} />
                 <PrivateRoute path='/add-education' component={AsyncAddEducation} />
-                <PrivateRoute path='/chat' component={AsyncChat} />
+                {/*<PrivateRoute path='/chat' component={AsyncChat} />*/}
                 <PrivateRoute path='/feed' component={AsyncPosts} />
                 <PrivateRoute path='/post/:id' component={AsyncPost} />
               </Switch>
@@ -113,7 +113,7 @@ const AsyncAddExperience = Loadable(doLoad(() => import('./components/add-creden
 const AsyncAddEducation = Loadable(doLoad(() => import('./components/add-credentials/AddEducation')))
 const AsyncPosts = Loadable(doLoad(() => import('./components/posts/Posts')))
 const AsyncPost = Loadable(doLoad(() => import('./components/post/Post')))
-const AsyncChat = Loadable(doLoad(() => import('./components/chat/Chat')))
+// const AsyncChat = Loadable(doLoad(() => import('./components/chat/Chat')))
 
 
 
