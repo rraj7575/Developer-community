@@ -5,18 +5,19 @@ import logger from 'redux-logger'
 const middleware = [thunk, logger]
 const initialState = {}
 
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+const store = createStore(
+    rootReducer,
+    initialState,
+    composeEnhancers(
+        applyMiddleware(...middleware)
+    )
+)
+
 // const store = createStore(
 //   rootReducer,
 //   initialState,
-//   compose(
-//     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
-//     applyMiddleware(...middleware)
-//   )
+//   applyMiddleware(...middleware)
 // )
-
-const store = createStore(
-  rootReducer,
-  initialState,
-  applyMiddleware(...middleware)
-)
  export default store
