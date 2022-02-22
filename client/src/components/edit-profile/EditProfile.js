@@ -41,21 +41,25 @@ class CreateProfile extends Component {
     }
     if (nextProps.profile.profile) {
       // const {skills} = nextProps.profile
-      const profile = {...nextProps.profile.profile}
+      let profile = {...nextProps.profile.profile}
+      profile = profile || {}
       const skillsCSV = profile.skills.join(',')
-      profile.company = !isEmpty(profile.company) ? profile.company : ''
-      profile.website = !isEmpty(profile.website) ? profile.website : ''
-      profile.status = !isEmpty(profile.status) ? profile.status : ''
-      profile.location = !isEmpty(profile.location) ? profile.location : ''
-      profile.githubusername = !isEmpty(profile.githubusername) ? profile.githubusername : ''
-      profile.bio = !isEmpty(profile.bio) ? profile.bio : ''
-      profile.social = !isEmpty(profile.social) ? profile.social : {}
-      profile.twitter = !isEmpty(profile.social.twitter) ? profile.social.twitter : ''
-      profile.facebook = !isEmpty(profile.social.facebook) ? profile.social.facebook : ''
-      profile.linkedin = !isEmpty(profile.social.linkedin) ? profile.social.linkedin : ''
-      profile.youtube = !isEmpty(profile.social.youtube) ? profile.social.youtube : ''
-      profile.instagram = !isEmpty(profile.social.instagram) ? profile.social.instagram : ''
-
+      profile = {
+        ...profile,
+        skills: skillsCSV,
+        company: !isEmpty(profile.company) ? profile.company : '',
+        website: !isEmpty(profile.website) ? profile.website : '',
+        status: !isEmpty(profile.status) ? profile.status : '',
+        location: !isEmpty(profile.location) ? profile.location : '',
+        githubusername: !isEmpty(profile.githubusername) ? profile.githubusername : '',
+        bio: !isEmpty(profile.bio) ? profile.bio : '',
+        social: !isEmpty(profile.social) ? profile.social : {},
+        twitter: !isEmpty(profile.social.twitter) ? profile.social.twitter : '',
+        facebook: !isEmpty(profile.social.facebook) ? profile.social.facebook : '',
+        instagram: !isEmpty(profile.social.instagram) ? profile.social.instagram : '',
+        linkedin: !isEmpty(profile.social.linkedin) ? profile.social.linkedin : '',
+        youtube: !isEmpty(profile.social.youtube) ? profile.social.youtube : '',
+      }
 
       // profile.company = !isEmpty(profile.company) ? profile.company : ''
       // profile.website = !isEmpty(profile.website) ? profile.website : ''
@@ -71,20 +75,7 @@ class CreateProfile extends Component {
       // profile.instagram = !isEmpty(profile.social.instagram) ? profile.social.instagram : ''
 
       this.setState({
-        handle: profile.handle,
-        company: profile.company,
-        website: profile.website,
-        location: profile.location,
-        status: profile.status,
-        skills: skillsCSV,
-        githubusername: profile.githubusername,
-        bio: profile.bio,
-        social: profile.social,
-        twitter: profile.twitter,
-        facebook: profile.facebook,
-        linkedin: profile.linkedin,
-        youtube: profile.youtube,
-        instagram: profile.instagram,
+        ...profile
       })
     }
   }
