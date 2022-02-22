@@ -7,9 +7,9 @@ import {loginUser} from "../../actions/authActions";
 class Landing extends Component {
 
   componentDidMount() {
-    if (this.props.auth.isAuthenticated) {
-      this.props.history.push('/dashboard')
-    }
+    // if (this.props.auth.isAuthenticated) {
+    //   this.props.history.push('/dashboard')
+    // }
   }
 
   render(){

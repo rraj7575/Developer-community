@@ -40,10 +40,9 @@ class Login extends Component {
   }
 
   onChangeInput = (e) => {
-    this.setState({[e.target.name]: e.target.value})
+    const {name, value} = e.target
+    this.setState({[name]: value})
   }
-
-  showErrors = (err) => (<div className='invalid-feedback'> {err}</div>)
 
   render(){
     const {errors, email, password} = this.state
@@ -90,6 +89,7 @@ class Login extends Component {
 Login.propTypes = {
   auth: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired,
+  onLogin: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({

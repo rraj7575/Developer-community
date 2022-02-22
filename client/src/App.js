@@ -27,6 +27,7 @@ if (localStorage.jwtToken) {
   console.log('Setting tokens.......')
   setAuthToken(localStorage.jwtToken)
   store.dispatch(setCurrentUser(decodedData))
+  console.log('App called..........................')
 }
 
 class App extends Component {
