@@ -9,3 +9,5 @@ npm i
 cd ..
 
 npm run dev
+
+https://mini-connect-world.herokuapp.com/

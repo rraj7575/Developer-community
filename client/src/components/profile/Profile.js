@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import ProfileAbout from './ProfileAbout'
 import ProfileCreds from './ProfileCreds'
-import ProfileGithub from './ProfileGithub'
+// import ProfileGithub from './ProfileGithub'
 import ProfileHeader from './ProfileHeader'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
