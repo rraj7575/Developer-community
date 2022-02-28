@@ -1,3 +1,9 @@
+Website for developers with multiple features such as sign up, profile
+management, community, and live chat with other developers. The database management
+system for the website was done in MongoDB and Amazon Web Services (AWS) cloud
+storage.
+
+
 Instructions to run this project
 
 npm i
