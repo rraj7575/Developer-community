@@ -39,16 +39,24 @@ app.use('/api/posts', posts)
 app.use('/api/profile', profile)
 //Server static assets if in production
 
-if (process.env.NODE_ENV === 'production') {
-  //Set static folder
-  console.log('in production')
-  app.use(express.static('client/build'))
-  app.get('*', (req, res) => {
-    const index = path.join(__dirname, 'client', 'build', 'index.html');
-    res.sendFile(index);
-    // res.sendFile(path.resolve(__filename, 'client', 'build', 'index.html'))
-  })
-}
+
+app.use(express.static('client/build'))
+app.get('*', (req, res) => {
+  const index = path.join(__dirname, 'client', 'build', 'index.html');
+  res.sendFile(index);
+  // res.sendFile(path.resolve(__filename, 'client', 'build', 'index.html'))
+})
+
+// if (process.env.NODE_ENV === 'production') {
+//   //Set static folder
+//   console.log('in production')
+//   app.use(express.static('client/build'))
+//   app.get('*', (req, res) => {
+//     const index = path.join(__dirname, 'client', 'build', 'index.html');
+//     res.sendFile(index);
+//     // res.sendFile(path.resolve(__filename, 'client', 'build', 'index.html'))
+//   })
+// }
 
 // client.on('connection', function (socket) {
 //   console.log('Socket connected')
