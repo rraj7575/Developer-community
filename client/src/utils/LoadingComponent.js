@@ -1,35 +1,35 @@
-import React, { Component } from 'react'
-import ringLoader from '../image/ring_loader.svg'
-import error from '../image/error.svg'
+import React, { Component } from "react";
+import ringLoader from "../image/ring_loader.svg";
+import error from "../image/error.svg";
 
 class LoadingComponent extends Component {
-  renderUI (img, msg) {
+  renderUI(img, msg) {
     return (
-      <div className='Loader'>
-        <img style={{display: 'block'}} src={img} alt='error'/>
+      <div className="Loader">
+        <img style={{ display: "block" }} src={img} alt="error" />
         <div>{msg}</div>
       </div>
-    )
+    );
   }
 
-  render () {
-    console.log('Component downloading.....')
+  render() {
+    console.log("Component downloading.....");
     if (this.props.error) {
-      return this.renderUI(error, 'Oops, something went wrong ...')
+      return this.renderUI(error, "Oops, something went wrong ...");
     } else if (this.props.pastDelay) {
-      return this.renderUI(ringLoader, 'Loading...')
+      return this.renderUI(ringLoader, "Loading...");
     } else {
-      return null
+      return null;
     }
   }
 }
 
-function doLoad (exp) {
+function doLoad(exp) {
   return {
     loader: () => exp(),
-    loading: LoadingComponent
-  }
+    loading: LoadingComponent,
+  };
 }
 
-export { doLoad }
-export default LoadingComponent
+export { doLoad };
+export default LoadingComponent;

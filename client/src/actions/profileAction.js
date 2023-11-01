@@ -1,194 +1,201 @@
-import axios from 'axios'
-import {PROFILE_LOADING, GET_PROFILE, CLEAR_CURRENT_PROFILE, GET_ERRORS, SET_CURRENT_USER, GET_PROFILES} from './types'
-export const getProfile  = dispatch => {
-  return{
+import axios from "axios";
+import {
+  PROFILE_LOADING,
+  GET_PROFILE,
+  CLEAR_CURRENT_PROFILE,
+  GET_ERRORS,
+  SET_CURRENT_USER,
+  GET_PROFILES,
+} from "./types";
+export const getProfile = (dispatch) => {
+  return {
     getCurrentProfile: () => {
-      dispatch(setProfileLoading())
-      axios.get('/api/profile')
-        .then(res => {
-          console.log(res.data)
+      dispatch(setProfileLoading());
+      axios
+        .get("/api/profile")
+        .then((res) => {
+          console.log(res.data);
           dispatch({
             type: GET_PROFILE,
-            payload: res.data
-          })
+            payload: res.data,
+          });
         })
-        .catch(err => {
+        .catch((err) => {
           dispatch({
             type: GET_PROFILE,
-            payload: {}
-          })
-        })
-    }
-  }
-}
+            payload: {},
+          });
+        });
+    },
+  };
+};
 
-
-export const getProfiles  = dispatch => {
-  return{
+export const getProfiles = (dispatch) => {
+  return {
     getAllProfile: () => {
-      dispatch(setProfileLoading())
-      axios.get('/api/profile/all')
-        .then(res => {
+      dispatch(setProfileLoading());
+      axios
+        .get("/api/profile/all")
+        .then((res) => {
           dispatch({
             type: GET_PROFILES,
-            payload: res.data
-          })
+            payload: res.data,
+          });
         })
-        .catch(err => {
+        .catch((err) => {
           dispatch({
             type: GET_PROFILES,
-            payload: null
-          })
-        })
-    }
-  }
-}
-
+            payload: null,
+          });
+        });
+    },
+  };
+};
 
 export const setProfileLoading = () => {
   return {
-    type: PROFILE_LOADING
-  }
-}
-
+    type: PROFILE_LOADING,
+  };
+};
 
 export const createProfile = (dispatch) => {
-  return{
+  return {
     onCreateProfile: (profileData, history) => {
-      axios.post('/api/profile',  profileData)
-        .then(res => history.push('/dashboard'))
-        .catch(err => {
+      axios
+        .post("/api/profile", profileData)
+        .then((res) => history.push("/dashboard"))
+        .catch((err) => {
           dispatch({
             type: GET_ERRORS,
-            payload: err.response.data
-          })
-        })
-    }
-  }
-}
-
+            payload: err.response.data,
+          });
+        });
+    },
+  };
+};
 
 export const deleteAccount = (dispatch) => {
-  return{
+  return {
     onDeleteAccount: () => {
-      if (window.confirm('Are you sure? This can not be undone!')) {
-        axios.delete('/api/profile')
-          .then(res => {
+      if (window.confirm("Are you sure? This can not be undone!")) {
+        axios
+          .delete("/api/profile")
+          .then((res) => {
             dispatch({
               type: SET_CURRENT_USER,
-              payload: {}
-            })
+              payload: {},
+            });
           })
-          .catch(err => {
+          .catch((err) => {
             dispatch({
               type: GET_ERRORS,
-              payload: err.response.data
-            })
-          })
+              payload: err.response.data,
+            });
+          });
       }
-    }
-  }
-}
-
+    },
+  };
+};
 
 export const deleteExperience = (dispatch) => {
-  return{
+  return {
     onDeleteExperience: (id) => {
-      axios.delete(`/api/profile/experience/${id}`)
-        .then(res => {
+      axios
+        .delete(`/api/profile/experience/${id}`)
+        .then((res) => {
           dispatch({
             type: GET_PROFILE,
-            payload: res.data
-          })
+            payload: res.data,
+          });
         })
-        .catch(err => {
+        .catch((err) => {
           dispatch({
             type: GET_ERRORS,
-            payload: err.response.data
-          })
-        })
-    }
-  }
-}
-
+            payload: err.response.data,
+          });
+        });
+    },
+  };
+};
 
 export const deleteEducation = (dispatch) => {
-  return{
+  return {
     onDeleteEducation: (id) => {
-      axios.delete(`/api/profile/education/${id}`)
-        .then(res => {
+      axios
+        .delete(`/api/profile/education/${id}`)
+        .then((res) => {
           dispatch({
             type: GET_PROFILE,
-            payload: res.data
-          })
+            payload: res.data,
+          });
         })
-        .catch(err => {
+        .catch((err) => {
           dispatch({
             type: GET_ERRORS,
-            payload: err.response.data
-          })
-        })
-    }
-  }
-}
-
+            payload: err.response.data,
+          });
+        });
+    },
+  };
+};
 
 export const clearCurrentProfile = () => {
   return {
-    type: CLEAR_CURRENT_PROFILE
-  }
-}
+    type: CLEAR_CURRENT_PROFILE,
+  };
+};
 
 export const addExperience = (dispatch) => {
-  return{
+  return {
     onAddExperience: (expData, history) => {
-      axios.post('/api/profile/experience',  expData)
-        .then(res => history.push('/dashboard'))
-        .catch(err => {
-          debugger
+      axios
+        .post("/api/profile/experience", expData)
+        .then((res) => history.push("/dashboard"))
+        .catch((err) => {
+          debugger;
           dispatch({
             type: GET_ERRORS,
-            payload: err.response.data
-          })
-        })
-    }
-  }
-}
-
+            payload: err.response.data,
+          });
+        });
+    },
+  };
+};
 
 export const addEducation = (dispatch) => {
-  return{
+  return {
     onAddEducation: (eduData, history) => {
-      axios.post('/api/profile/education',  eduData)
-        .then(res => history.push('/dashboard'))
-        .catch(err => {
+      axios
+        .post("/api/profile/education", eduData)
+        .then((res) => history.push("/dashboard"))
+        .catch((err) => {
           dispatch({
             type: GET_ERRORS,
-            payload: err.response.data
-          })
-        })
-    }
-  }
-}
+            payload: err.response.data,
+          });
+        });
+    },
+  };
+};
 
-
-export const getProfileByHandle  = dispatch => {
-  return{
+export const getProfileByHandle = (dispatch) => {
+  return {
     onGetProfileByHandle: (handle) => {
-      dispatch(setProfileLoading())
-      axios.get(`/api/profile/handle/${handle}`)
-        .then(res => {
+      dispatch(setProfileLoading());
+      axios
+        .get(`/api/profile/handle/${handle}`)
+        .then((res) => {
           dispatch({
             type: GET_PROFILE,
-            payload: res.data
-          })
+            payload: res.data,
+          });
         })
-        .catch(err => {
+        .catch((err) => {
           dispatch({
             type: GET_PROFILE,
-            payload: null
-          })
-        })
-    }
-  }
-}
+            payload: null,
+          });
+        });
+    },
+  };
+};

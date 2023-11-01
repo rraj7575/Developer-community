@@ -1,38 +1,37 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
-import Spinner from './../common/Spinner'
-import PostForm from './PostForm'
-import PostFeed from './PostFeed'
-import {getPosts} from "../../actions/postActions";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import Spinner from "./../common/Spinner";
+import PostForm from "./PostForm";
+import PostFeed from "./PostFeed";
+import { getPosts } from "../../actions/postActions";
 
 class Post extends Component {
-
   componentDidMount() {
-    this.props.onGetPosts()
+    this.props.onGetPosts();
   }
 
   render() {
-    const { posts, loading } = this.props.post
-    let postContent
+    const { posts, loading } = this.props.post;
+    let postContent;
     if (posts === null || loading) {
-      postContent = <Spinner />
+      postContent = <Spinner />;
     } else {
-      postContent = <PostFeed posts={posts} />
+      postContent = <PostFeed posts={posts} />;
     }
 
-    return(
-      <div className='feed'>
-        <div className='container'>
-          <div className='row'>
-            <div className='col-md-12'>
-              <PostForm/>
+    return (
+      <div className="feed">
+        <div className="container">
+          <div className="row">
+            <div className="col-md-12">
+              <PostForm />
               {postContent}
             </div>
           </div>
         </div>
       </div>
-    )
+    );
   }
 }
 
@@ -42,13 +41,13 @@ Post.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  post: state.post
+  post: state.post,
 });
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    ...getPosts(dispatch)
-  }
-}
+    ...getPosts(dispatch),
+  };
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(Post)
+export default connect(mapStateToProps, mapDispatchToProps)(Post);

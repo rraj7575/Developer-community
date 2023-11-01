@@ -1,24 +1,23 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
-import PostItem from './../posts/PostItem'
-import Spinner from './../common/Spinner'
-import {getPost} from "../../actions/postActions";
-import CommentForm from './CommentForm'
-import CommentFeed from './CommentFeed'
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+import PostItem from "./../posts/PostItem";
+import Spinner from "./../common/Spinner";
+import { getPost } from "../../actions/postActions";
+import CommentForm from "./CommentForm";
+import CommentFeed from "./CommentFeed";
 
 class Post extends Component {
-
   componentDidMount() {
-    this.props.onGetPost(this.props.match.params.id)
+    this.props.onGetPost(this.props.match.params.id);
   }
 
   render() {
-    const { post, loading } = this.props.post
-    let postContent
+    const { post, loading } = this.props.post;
+    let postContent;
     if (post === null || loading || Object.keys(post).length === 0) {
-      postContent = <Spinner/>
+      postContent = <Spinner />;
     } else {
       postContent = (
         <div>
@@ -26,14 +25,14 @@ class Post extends Component {
           <CommentForm postId={post._id} />
           <CommentFeed postId={post._id} comments={post.comments} />
         </div>
-      )
+      );
     }
-    return(
+    return (
       <div className="post">
         <div className="container">
           <div className="row">
             <div className="col-md-12">
-              <Link to='/feed' className='btn btn-light mb-3' >
+              <Link to="/feed" className="btn btn-light mb-3">
                 Back To Feed
               </Link>
               {postContent}
@@ -41,23 +40,23 @@ class Post extends Component {
           </div>
         </div>
       </div>
-    )
+    );
   }
 }
 
 Post.propTypes = {
   post: PropTypes.object.isRequired,
-  onGetPost: PropTypes.func.isRequired
+  onGetPost: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
-  post: state.post
+  post: state.post,
 });
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    ...getPost(dispatch)
-  }
-}
+    ...getPost(dispatch),
+  };
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(Post)
+export default connect(mapStateToProps, mapDispatchToProps)(Post);
